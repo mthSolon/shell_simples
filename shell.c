@@ -120,13 +120,13 @@ int execute_command(char **args) {
     if (pid == 0) {
         // Processo filho executa o comando dado pelo usuário
         if (execvp(args[0], args) == -1) {
-            perror("shell");
+            perror("Error executing command");
         }
 
         exit(EXIT_FAILURE);
     } else if (pid < 0) {
         // falhou em fazer o fork
-        perror("shell");
+        perror("Error forking");
     } else {
         // processo pai espera o processo filho acabar
         do {
